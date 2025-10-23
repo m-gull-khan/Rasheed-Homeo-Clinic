@@ -15,7 +15,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.8rem 2rem;
+  padding: 1rem 2rem;
   /* gives nice vertical breathing space */
   font-size: 0.95rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -428,7 +428,7 @@ body {
 
 /* Info Section */
 .info-section {
-  max-width: 900px;
+  max-width: 1200px;
   margin: 4rem auto 2rem;
   text-align: center;
   background: linear-gradient(90deg, #f9f9ff, #eef4ff);
@@ -471,6 +471,11 @@ body {
   text-align: center;
   padding: 4rem 1rem;
   background-color: #f9f9ff;
+    max-width: 1200px;   /* same width for all sections */
+  margin: 0 auto;      /* center align */
+  padding: 0 20px;     /* consistent side padding */
+  box-sizing: border-box;
+
 }
 
 .services-section h2 {
@@ -578,13 +583,13 @@ body {
 /* About Section */
 .about-section {
   display: flex;
-  align-items: center; /* keeps both sides visually centered */
+  align-items: center; /* vertically center content */
   justify-content: space-between;
   gap: 3rem;
-  padding: 4rem 2rem;
-  background: #ffffff;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 80px 20px; /* more breathing space */
+  box-sizing: border-box;
 }
 
 .about-content {
@@ -630,21 +635,31 @@ body {
 
 .about-image img {
   width: 100%;
-  max-width: 480px;
-  height: auto; /* keeps aspect ratio intact */
+  max-width: 450px;
+  height: auto;
+  aspect-ratio: 1 / 1; /* 👈 keeps it visually balanced */
   border-radius: 16px;
   object-fit: cover;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive: stack on mobile */
+/* Responsive */
+@media (max-width: 992px) {
+  .about-section {
+    gap: 2rem;
+    padding: 60px 20px;
+  }
+}
+
 @media (max-width: 768px) {
   .about-section {
     flex-direction: column;
     text-align: center;
   }
+
   .about-image img {
     max-width: 90%;
+    aspect-ratio: auto; /* natural on mobile */
   }
 }
 
@@ -655,98 +670,355 @@ body {
   }
 }
 
+/* ===========================
+   Rasheed Homeo Info Section
+=========================== */
 .homeo-info-section {
-  padding: 60px 20px;
-  background: #f9f9f9;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 80px auto;
+  padding: 0 20px;
   font-family: 'Poppins', sans-serif;
-  color: #333;
 }
 
-/* Flex container */
-.homeo-info-section .info-block {
+/* Each row (image + text) */
+.info-block {
   display: flex;
-  align-items: stretch; /* ensure equal height */
+  align-items: center;           /* vertically centers text beside image */
+  justify-content: space-between;
   gap: 40px;
-  margin-bottom: 60px;
+  margin-bottom: 80px;
 }
 
-/* Alternate row */
-.homeo-info-section .info-block.alt {
+/* Alternate layout (row 2, 4, etc.) */
+.info-block.alt {
   flex-direction: row-reverse;
 }
 
-/* Equal width for image and content */
-.homeo-info-section .info-block .info-image,
-.homeo-info-section .info-block .info-content {
-  flex: 1; /* 50% each */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+/* Equal width columns */
+.info-image,
+.info-content {
+  flex: 1;
 }
 
-/* Image styling */
-.homeo-info-section .info-image img {
+/* Image settings */
+.info-image img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  border-radius: 12px;
   object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
 }
 
-/* Content styling */
-.homeo-info-section .info-content h2 {
-  font-size: 28px;
-  margin-bottom: 15px;
+/* Text section */
+.info-content h2 {
+  font-size: 1.8rem;
   color: #0077b6;
+  margin-bottom: 0.5rem;
 }
 
-.homeo-info-section .info-content h3 {
-  font-size: 20px;
-  margin-bottom: 15px;
-  color: #555;
+.info-content h3 {
+  font-size: 1.2rem;
+  color: #4B006E;
+  margin-bottom: 1rem;
 }
 
-.homeo-info-section .info-content p {
-  font-size: 16px;
-  line-height: 1.8;
+.info-content p {
+  color: #333;
+  line-height: 1.7;
+  font-size: 1rem;
+  max-width: 95%;
+}
+
+/* Responsiveness (mobile/tablet) */
+@media (max-width: 992px) {
+  .info-block {
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .info-block.alt {
+    flex-direction: column;
+  }
+
+  .info-image img {
+    max-width: 90%;
+    margin: 0 auto 20px;
+  }
+
+  .info-content h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* ===== Contact Section (matches other sections) ===== */
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.contact-section {
+  padding: 80px 0;
+  background: #ffffff;
   color: #333;
 }
 
-/* Responsive for tablets */
+/* Two-column grid */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* Left info column */
+.contact-info h2 {
+  font-size: 2rem;
+  color: #4B006E;
+  margin-bottom: 0.4rem;
+}
+.contact-info p {
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: #333;
+  line-height: 1.8;
+}
+.contact-list a { color: #0077b6; text-decoration: none; }
+
+/* Form column */
+.contact-form-wrap {
+  background: #f7fbff;
+  padding: 22px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+}
+
+.contact-form .form-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+}
+.contact-form label {
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+  color: #333;
+}
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form textarea {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #e6eef8;
+  background: white;
+  font-size: 1rem;
+  color: #222;
+  box-sizing: border-box;
+}
+.contact-form textarea { resize: vertical; min-height: 120px; }
+
+/* Actions row */
+.form-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.btn-primary {
+  background: linear-gradient(90deg,#4B006E,#3DC7F4);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 30px;
+  border: 0;
+  cursor: pointer;
+  font-weight: 700;
+}
+.form-status { font-size: 0.95rem; color: #2d6a4f; }
+
+/* Responsive: stack columns on small screens */
 @media (max-width: 992px) {
-  .homeo-info-section .info-block {
-    flex-direction: column;
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+  .contact-form-wrap { order: 2; }
+  .contact-info { order: 1; text-align: center; }
+}
+
+/* 📍 Contact Map Section */
+.contact-map-section {
+  width: 100%;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  padding: 60px 20px 0; /* top space, small horizontal padding */
+  background: #fff;
+  box-sizing: border-box;
+}
+
+/* Heading */
+.contact-map-section h2 {
+  font-size: 2rem;
+  color: #4B006E;
+  font-weight: 600;
+  text-align: center;           /* perfectly center heading */
+  margin: 0 auto 25px;          /* center horizontally & add bottom space */
+  display: inline-block;        /* keep underline centered */
+  position: relative;
+}
+
+/* Underline */
+.contact-map-section h2::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background-color: #3DC7F4;
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+/* Map container (single version only) */
+.contact-map-section .map-container {
+  width: 95%;                  /* near full width */
+  max-width: 1400px;           /* limit for large screens */
+  margin: 0 auto 60px;         /* center + spacing from footer */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Map iframe */
+.contact-map-section .map-container iframe {
+  width: 100%;
+  height: 400px;
+  border: none;
+  display: block;
+  border-radius: 12px;
+}
+
+/* Responsive: Tablet and Mobile */
+@media (max-width: 768px) {
+  .contact-map-section {
+    padding: 40px 15px 0;
   }
 
-  .homeo-info-section .info-block.alt {
-    flex-direction: column;
+  .contact-map-section h2 {
+    font-size: 1.6rem;
   }
 
-  .homeo-info-section .info-image img {
-    height: auto; /* let height adjust on smaller screens */
+  .contact-map-section .map-container {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+
+  .contact-map-section .map-container iframe {
+    height: 300px;
   }
 }
 
-/* Mobile */
-@media (max-width: 576px) {
-  .homeo-info-section {
-    padding: 40px 15px;
-  }
-
-  .homeo-info-section .info-content h2 {
-    font-size: 24px;
-  }
-
-  .homeo-info-section .info-content h3 {
-    font-size: 18px;
-  }
-
-  .homeo-info-section .info-content p {
-    font-size: 15px;
+@media (max-width: 480px) {
+  .contact-map-section h2 {
+    font-size: 1.4rem;
   }
 }
+
+/* Page Header */
+.page-header {
+  text-align: center;
+  padding: 80px 20px 40px;
+  background: #f9f9f9;
+}
+
+.page-header h1 {
+  color: #4B006E;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.page-header p {
+  color: #555;
+  font-size: 1.1rem;
+}
+
+/* Blog Section */
+.blog-section {
+  padding: 60px 20px;
+  background: #fff;
+}
+
+.blog-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 30px;
+}
+
+.blog-card {
+  background: #f9f9f9;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.blog-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.blog-content {
+  padding: 20px 25px;
+}
+
+.blog-content h2 {
+  font-size: 1.3rem;
+  color: #4B006E;
+  margin-bottom: 12px;
+}
+
+.blog-content p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.read-more {
+  display: inline-block;
+  margin-top: 12px;
+  color: #3DC7F4;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.read-more:hover {
+  color: #4B006E;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .page-header h1 {
+    font-size: 2rem;
+  }
+  .blog-content h2 {
+    font-size: 1.2rem;
+  }
+}
+
 
 /* Footer always at bottom */
 /* Rasheed Homeo Clinic Footer Styles */
